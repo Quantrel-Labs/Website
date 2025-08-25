@@ -6,6 +6,16 @@
   --muted: #bdbdbd;
   --accent: #fff;
   --mono: 'Courier New', Courier, monospace;
+  --glass: rgba(255,255,255,0.02);
+}
+
+/* Light theme variables */
+:root[data-theme='light']{
+  --bg: #fff;
+  --fg: #000;
+  --muted: #4a4a4a;
+  --accent: #000;
+  --glass: rgba(0,0,0,0.03);
 }
 
 *{box-sizing:border-box}
@@ -17,6 +27,7 @@ body{
   font-family:var(--mono);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  transition:background-color 220ms ease, color 220ms ease;
 }
 
 .bg{
@@ -33,7 +44,7 @@ body{
   padding:3.25rem 2.5rem;
   text-align:center;
   position:relative;
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  background:linear-gradient(180deg, var(--glass), rgba(255,255,255,0.01));
   box-shadow:0 10px 30px rgba(255,255,255,0.03), inset 0 0 0 3px rgba(0,0,0,0.4);
 }
 
@@ -105,6 +116,34 @@ h1{
   font-size:0.85rem;
 }
 
+/* Theme toggle button */
+.theme-toggle{
+  position:absolute;
+  right:14px;
+  top:14px;
+  background:transparent;
+  border:2px solid var(--fg);
+  color:var(--fg);
+  padding:0.35rem 0.5rem;
+  font-size:1rem;
+  line-height:1;
+  cursor:pointer;
+  border-radius:6px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.theme-toggle svg{display:block}
+.theme-toggle .icon{width:18px;height:18px}
+
+/* show sun in light mode, moon in dark mode */
+body.light .theme-toggle .sun{display:block}
+body.light .theme-toggle .moon{display:none}
+body.dark .theme-toggle .sun{display:none}
+body.dark .theme-toggle .moon{display:block}
+
+.theme-toggle:focus{outline:3px solid rgba(255,255,255,0.06)}
+
 /* retro grid overlay */
 .screen::before{
   content:"";
@@ -115,6 +154,20 @@ h1{
   pointer-events:none;
   mix-blend-mode:overlay;
 }
+
+.contact-btn{
+  display:inline-block;
+  margin-top:1rem;
+  background:transparent;
+  color:var(--fg);
+  border:2px solid var(--fg);
+  padding:0.5rem 0.9rem;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:1px;
+  border-radius:6px;
+}
+.contact-btn:hover{background:var(--fg); color:var(--bg)}
 
 /* small screens */
 @media (max-width:520px){
