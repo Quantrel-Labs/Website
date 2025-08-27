@@ -1,29 +1,11 @@
-# quantrel — Coming Soon
 
-This repository contains a minimal black-and-white retro "coming soon" landing page for Quantrel.
+  # AI Model Marketplace Platform
 
-Built with simple, dependency-free HTML and CSS intended to be lightweight and easy to deploy.
+  This is a code bundle for AI Model Marketplace Platform. The original project is available at https://www.figma.com/design/MYhvuF4oMY9PZucAASQWx3/AI-Model-Marketplace-Platform.
 
-## Preview
-Open `index.html` in your browser to preview the page.
+  ## Running the code
 
-## Local development
-- Open the file directly in your browser: double-click `index.html` or run `start index.html` from a Windows `cmd.exe` prompt.
-- Or run a simple static server (requires Python):
+  Run `npm i` to install the dependencies.
 
-  python -m http.server 8000
-
-Then visit http://localhost:8000 in your browser.
-
-If you use VS Code, the Live Server extension also works well.
-
-## Files
-- `index.html` — the landing page markup
-- `styles.css` — black & white retro styles
-
-## Customization
-- Edit the logo text, tagline, or styles in `styles.css` to match your branding.
-- If you want an email sign-up form wired to a provider (Mailchimp, ConvertKit, Netlify Forms, etc.), open an issue or request and it will be added.
-
-## License
-MIT © Quantrel Labs
+  Run `npm run dev` to start the development server.
+  
