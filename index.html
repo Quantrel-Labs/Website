@@ -1,15 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quantrel — Coming Soon</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg">
+    <div class="screen" role="main">
+      <header class="logo">quantrel</header>
+      <h1 class="flick">Coming soon</h1>
+      <p class="tagline">High-frequency ideas. Low-latency delivery.</p>
+      
+      <!-- Contact button opens mail client -->
+      <a class="contact-btn" href="mailto:sahil.chambyal@outlook.com" aria-label="Email quantrel">Contact</a>
+    
+      <!-- Theme toggle button -->
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+        <!-- Monochrome sun icon; color follows currentColor (var(--fg) / var(--bg)) -->
+        <svg class="icon sun" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" fill="currentColor" />
+          <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </g>
+        </svg>
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>AI Model Marketplace Platform</title>
-    </head>
-
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
+        <!-- Monochrome moon icon; displayed in dark mode -->
+        <svg class="icon moon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="currentColor" />
+        </svg>
+      </button>
+    </div>
+  </div>
   
+  <script>
+  (function(){
+    const toggle = document.getElementById('theme-toggle');
+    const storageKey = 'quantrel-theme';
+
+    const getPreferred = () => {
+      // const stored = localStorage.getItem(storageKey);
+      // if(stored === 'light' || stored === 'dark') return stored;
+      // if(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+      return 'dark';
+    };
+
+    const apply = (theme) => {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.body.classList.toggle('light', theme === 'light');
+      document.body.classList.toggle('dark', theme === 'dark');
+      if(toggle){
+        toggle.setAttribute('aria-pressed', String(theme === 'light'));
+      }
+    };
+
+    // initialize
+    const current = getPreferred();
+    apply(current);
+
+    if(toggle){     	// manual toggle stores preference
+      toggle.addEventListener('click', function(){
+        const next = document.body.classList.contains('light') ? 'dark' : 'light';
+        localStorage.setItem(storageKey, next);
+        apply(next);
+      });
+    }
+
+    // listen to system changes only if user hasn't set a manual preference
+    if(window.matchMedia){
+      const mq = window.matchMedia('(prefers-color-scheme: light)');
+      mq.addEventListener('change', (e)=>{
+        if(!localStorage.getItem(storageKey)) apply(e.matches ? 'light' : 'dark');
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
